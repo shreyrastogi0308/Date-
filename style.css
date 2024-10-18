@@ -1,0 +1,167 @@
+body {
+    background: linear-gradient(to bottom, #ffe6f0, #ffb3c6);
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.heart-container {
+    position: absolute;
+    top: 150px;
+    left: 150px;
+    width: 220px;
+    height: 220px;
+    background-color: #ff6f91;
+    transform: rotate(-45deg);
+    animation: pulse 2s infinite;
+    overflow: visible;
+    z-index: 1;
+}
+
+.heart-container:before,
+.heart-container:after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background-color: #ff6f91;
+}
+
+.heart-container:before {
+    top: -110px;
+    left: 0;
+}
+
+.heart-container:after {
+    left: 110px;
+    top: 0;
+}
+
+.text-box {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    width: 300px;
+    height: 150px;
+    color: #ff6f91;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+    border: 2px dashed #ff6f91;
+    z-index: 2;
+}
+
+.buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+input[type="button"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background: linear-gradient(145deg, #ff8ba0, #ff6f91);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+input[type="button"]:hover {
+    background: linear-gradient(145deg, #ff6f91, #ff8ba0);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Bursting text styles */
+.bursting-text {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6f91;
+    white-space: nowrap;
+    opacity: 1;
+    animation: burst 1.5s forwards; /* Animation to move text */
+}
+
+@keyframes burst {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-50px) scale(1.2); /* Move up and scale */
+    }
+    100% {
+        transform: translateY(-100px) scale(1.5); /* Move further up and scale */
+        opacity: 0; /* Fade out */
+    }
+}
+
+/* Heart confetti styles */
+.heart {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #ff6f91;
+    transform: rotate(45deg);
+    opacity: 0.8;
+    z-index: 100;
+    animation: float 4s ease-in-out infinite;
+}
+
+.heart:before,
+.heart:after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: inherit;
+    border-radius: 50%;
+}
+
+.heart:before {
+    top: -6px;
+    left: 0;
+}
+
+.heart:after {
+    left: 6px;
+    top: 0;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(45deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(45deg);
+    }
+    100% {
+        transform: translateY(0) rotate(45deg);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1) rotate(-45deg);
+    }
+
+    50% {
+        transform: scale(1.05) rotate(-45deg);
+    }
+}
+
