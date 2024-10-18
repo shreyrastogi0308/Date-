@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For 20 0ct</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="heart-container"></div>
+    <div class="text-box">
+        Heyy Qt!<br>
+        Will you go on a date with me?
+        <div class="buttons">
+            <input type="button" name="yes" id="yes" value="Yes">
+            <input type="button" name="no" id="no" value="No">
+        </div>
+    </div>
+
+    <script>
+        // Function to create small hearts in the background
+        function createBackgroundHearts(numHearts) {
+            for (let i = 0; i < numHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+
+                // Randomly position the heart
+                heart.style.left = `${Math.random() * 100}vw`; // Position across the full width
+                heart.style.top = `${Math.random() * 100}vh`; // Position across the full height
+                heart.style.animationDuration = `${2 + Math.random() * 3}s`; // Randomize floating duration
+
+                document.body.appendChild(heart);
+            }
+        }
+
+        const noButton = document.getElementById('no');
+        const yesButton = document.getElementById('yes');
+
+        // Create background hearts
+        createBackgroundHearts(20); // Number of hearts to create in the background
+
+        // Function to create heart confetti effect
+        function createHearts() {
+            for (let i = 0; i < 100; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+
+                const colors = ['#ff6f91', '#ff85b3', '#ffb3d9', '#fbb6c1', '#ffcccc'];
+                heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                heart.style.left = `${Math.random() * window.innerWidth}px`;
+                heart.style.top = `-20px`;
+                heart.style.animationDuration = `${1 + Math.random()}s`;
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            }
+        }
+
+        yesButton.addEventListener('click', () => {
+    // Create bursting "I love you" texts
+    for (let i = 0; i < 10; i++) { // Create 10 "I love you" bursts
+        const loveText = document.createElement('div');
+        loveText.classList.add('bursting-text');
+        loveText.textContent = "I love you 🫶";
+
+        // Randomly position the text
+        loveText.style.left = `${Math.random() * 100}vw`; // Random X position
+        loveText.style.top = `${Math.random() * 80}vh`; // Random Y position (to avoid being too close to the bottom)
+
+        document.body.appendChild(loveText);
+
+        // Remove the text after bursting
+        setTimeout(() => {
+            loveText.remove();
+        }, 1500); // Text will be removed after animation
+    }
+    createHearts();
+});
+
+
+        noButton.addEventListener('mouseenter', () => {
+            const textBox = document.querySelector('.text-box'); // Get the text box
+            const boxRect = textBox.getBoundingClientRect(); // Get the text box dimensions
+            const randomX = Math.random() * (boxRect.width - noButton.offsetWidth); // New X position
+            const randomY = Math.random() * (boxRect.height - noButton.offsetHeight); // New Y position
+
+            noButton.style.position = 'absolute'; // Set position to absolute
+            noButton.style.left = `${randomX}px`; // Move button to new X position
+            noButton.style.top = `${randomY}px`; // Move button to new Y position
+        });
+    </script>
+</body>
+
+</html>
